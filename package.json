@@ -8,7 +8,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "testcov": "ng test --sourcemap=false --code-coverage"
   },
   "private": true,
   "dependencies": {
