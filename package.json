@@ -8,11 +8,13 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "testcov": "ng test --sourcemap=false --code-coverage"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "5.0.0",
+    "@angular/cdk": "5.0.0-rc0",
     "@angular/common": "5.0.0",
     "@angular/compiler": "5.0.0",
     "@angular/core": "5.0.0",
