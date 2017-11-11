@@ -15,6 +15,7 @@ export class GithubSearchService{
     //this.getUser('Lein-haz');
     //this.getUser('holman');
     //this.howMangy('https://api.github.com/users/holman/followers',50);
+    this.howMangy('https://api.github.com/user/2723/followers?per_page=100&page=43',50);
     //this.howMangy('https://api.github.com/users/Lein-haz/followers');
     //this.howMangy('https://api.github.com/users/holman/followers',50);
   }
@@ -58,7 +59,7 @@ export class GithubSearchService{
   }
 
   getPaginatedFollowers(followersUrl: string){
-    let userRes = this.apiService.apiGet<HttpResponse<FollowerModel[]>>('https://api.github.com/users/holman/followers', {observe: 'response'});
+    let userRes = this.apiService.apiGet<HttpResponse<FollowerModel[]>>(followersUrl, {observe: 'response'});
     userRes.subscribe(
       data => {
         console.log(data);

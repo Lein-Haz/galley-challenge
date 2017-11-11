@@ -3,6 +3,7 @@ import {CommonModule} from "@angular/common";
 import {ApiService} from "./api.service";
 import {HttpClientModule} from "@angular/common/http";
 import {GithubSearchService} from "./github.search.service";
+import {FollowerPaginationService} from "./follower.pagination.service";
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import {GithubSearchService} from "./github.search.service";
   ],
   providers: [
     ApiService,
-    GithubSearchService
+    GithubSearchService,
+    FollowerPaginationService
   ],
   bootstrap: []
 })
