@@ -1,0 +1,125 @@
+// get material theming function
+@import '~@angular/material/_theming';
+
+// Include the base styles for Angular Material core. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+@include mat-core();
+
+$mat-primary: (
+  50 : #eef6e7,
+  100 : #d5e7c3,
+  200 : #b9d89b,
+  300 : #9cc873,
+  400 : #87bc55,
+  500 : #73b037,
+  600 : #6aa931,
+  700 : #5fa02a,
+  800 : #559723,
+  900 : #428716,
+  A100 : #d4ffbd,
+  A200 : #b3ff8a,
+  A400 : #92ff57,
+  A700 : #82ff3d,
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: $black-87-opacity,
+    500: $black-87-opacity,
+    600: $black-87-opacity,
+    700: $white-87-opacity,
+    800: $white-87-opacity,
+    900: $white-87-opacity,
+    A100: $black-87-opacity,
+    A200: $black-87-opacity,
+    A400: $black-87-opacity,
+    A700: $black-87-opacity,
+  )
+);
+
+$mat-accent: (
+  0: #ffffff,
+  50 : #e7e8f0,
+  100 : #c3c7db,
+  200 : #9ba1c3,
+  300 : #727baa,
+  400 : #545f98,
+  500 : #364386,
+  600 : #303d7e,
+  700 : #293473,
+  800 : #222c69,
+  900 : #161e56,
+  1000: #000000,
+  A100 : #919dff,
+  A200 : #5e6fff,
+  A400 : #2b41ff,
+  A700 : #122aff,
+  contrast: (
+    0: #000000,
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: $white-87-opacity,
+    500: $white-87-opacity,
+    600: $white-87-opacity,
+    700: $white-87-opacity,
+    800: $white-87-opacity,
+    900: $white-87-opacity,
+    1000: #ffffff,
+    A100: $black-87-opacity,
+    A200: $white-87-opacity,
+    A400: $white-87-opacity,
+    A700: $white-87-opacity,
+  )
+);
+
+$mat-warn: (
+  50 : #f8f4e8,
+  100 : #ede4c5,
+  200 : #e2d29e,
+  300 : #d6bf77,
+  400 : #cdb25a,
+  500 : #c4a43d,
+  600 : #be9c37,
+  700 : #b6922f,
+  800 : #af8927,
+  900 : #a2781a,
+  1000: #aa3939,
+  A100 : #fff2d8,
+  A200 : #ffe1a5,
+  A400 : #ffd072,
+  A700 : #ffc858,
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: $black-87-opacity,
+    500: $black-87-opacity,
+    600: $black-87-opacity,
+    700: $black-87-opacity,
+    800: $black-87-opacity,
+    900: $white-87-opacity,
+    A100: $black-87-opacity,
+    A200: $black-87-opacity,
+    A400: $black-87-opacity,
+    A700: $black-87-opacity,
+  )
+);
+
+//Our primary app theme
+$otp-app-primary: mat-palette($mat-primary);
+
+//Our accent color app theme
+$otp-app-accent:  mat-palette($mat-accent);
+
+// The warn palette is optional (defaults to red).
+$otp-app-warn:    mat-palette($mat-warn);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$otp-app-theme: mat-light-theme($otp-app-primary, $otp-app-accent, $otp-app-warn);
+
+// apply our theme
+@include angular-material-theme($otp-app-theme);
