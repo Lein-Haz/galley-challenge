@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import {AppMaterialModule} from "./app-material/app-material.module";
+import {CoreModule} from "../core/core.module";
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import {AppMaterialModule} from "./app-material/app-material.module";
   ],
   imports: [
     BrowserModule,
-    AppMaterialModule
+    AppMaterialModule,
+    CoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]
