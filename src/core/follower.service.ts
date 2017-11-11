@@ -8,7 +8,7 @@ interface PaginationObject{
 }
 
 @Injectable()
-export class FollowerPaginationService{
+export class FollowerService{
 
   public getNextFollowersUrl(headerLinkString: string): string{
     let paginationArray = this.parseHeaderLink(headerLinkString);

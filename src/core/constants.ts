@@ -1,6 +1,7 @@
 export class ConstantService {
   public static GITHUB_SEARCH = {
-    REQUEST_DEFAULT_FOLLOWER_COUNT: 30
+    REQUEST_DEFAULT_FOLLOWER_COUNT: 30,
+    FOLLOWERS_PER_REQUEST: 100
   };
 
   public static REGEX = {
