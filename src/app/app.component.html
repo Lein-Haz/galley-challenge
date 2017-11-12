@@ -8,19 +8,11 @@
   </h1>
 </div>
 
-<user-search></user-search>
+<user-search (userSearchResultEmitter)="searchResultHandler($event)"></user-search>
 
 <router-outlet></router-outlet>
 
 
 
-<div *ngIf="userguy?.avatar_url">
-  <img src="{{userguy?.avatar_url}}" class="ava-image">
-</div>
 
-<div>
-  <div>We got {{userguy?.name}}</div>
-  <div>He's got {{userguy?.followers}}</div>
-  <div>We's pulled {{followerList?.length}}</div>
-</div>
 
