@@ -3,6 +3,7 @@ import {GithubSearchService} from "../core/github.search.service";
 import {FollowerService} from "../core/follower.service";
 import {UserModel} from "../core/models/user.model";
 import {FollowerModel} from "../core/models/follower.model";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,14 @@ export class AppComponent implements OnInit{
   public userguy: UserModel;
   public followerList: FollowerModel[];
 
-  constructor(private githubSearchService: GithubSearchService, private followerServ: FollowerService){}
+  public userSearch: string;
+
+  constructor(
+    private githubSearchService: GithubSearchService,
+    private followerServ: FollowerService,
+    private router: Router,
+    private actRoute: ActivatedRoute
+  ){}
 
   ngOnInit(): void {
     let pagString = '<https://api.github.com/user/2723/followers?page=2>; rel=\"next\", <https://api.github.com/user/2723/followers?page=175>; rel=\"last\"';
@@ -22,7 +30,11 @@ export class AppComponent implements OnInit{
 
     //this.searchUser('Lein-haz');
     //this.searchUser('kevinclark');
-    this.searchUser('holman');
+    //this.searchUser('holman');
+  }
+
+  findTheDude(){
+    this.searchUser(this.userSearch);
   }
 
   searchUser(username: string){
@@ -44,6 +56,7 @@ export class AppComponent implements OnInit{
       data => {
         this.followerList = data;
         console.log(this.followerList);
+        this.router.navigate(['/', this.userguy.login]);
         if(this.followerList.length < this.userguy.followers){
           console.log("we gotta get more");
         }

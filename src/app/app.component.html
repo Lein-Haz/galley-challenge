@@ -1,17 +1,31 @@
 
 <div>
   <mat-toolbar>
-    {{title}} yo
+    {{title}}
   </mat-toolbar>
   <h1>
     Welcome to {{title}}!
   </h1>
 </div>
-<h2>Nothing here man</h2>
+
+<router-outlet></router-outlet>
+
+<form>
+  <mat-form-field>
+    <input matInput placeholder="username" [(ngModel)]="userSearch" name="username">
+  </mat-form-field>
+  <div>
+    <button type="submit" mat-raised-button (click)="findTheDude()" color="primary">Search</button>
+  </div>
+</form>
+
+<div *ngIf="userguy?.avatar_url">
+  <img src="{{userguy?.avatar_url}}" class="ava-image">
+</div>
 
 <div>
-  <div>We got {{userguy.name}}</div>
-  <div>He's got {{userguy.followers}}</div>
-  <div>We's pulled {{followerList.length}}</div>
+  <div>We got {{userguy?.name}}</div>
+  <div>He's got {{userguy?.followers}}</div>
+  <div>We's pulled {{followerList?.length}}</div>
 </div>
 
