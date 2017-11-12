@@ -8,7 +8,7 @@ import {CoreModule} from "../core/core.module";
 import {AppRoutingModule} from "./app-routing.module";
 import {FormsModule} from "@angular/forms";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {ResultsModule} from "./results/results.module";
+import {ResultModule} from "./result/result.module";
 
 
 @NgModule({
@@ -20,7 +20,7 @@ import {ResultsModule} from "./results/results.module";
     AppMaterialModule,
     CoreModule,
     AppRoutingModule,
-    ResultsModule,
+    ResultModule,
     FormsModule,
     BrowserAnimationsModule
   ],
