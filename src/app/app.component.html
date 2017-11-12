@@ -8,16 +8,11 @@
   </h1>
 </div>
 
+<user-search></user-search>
+
 <router-outlet></router-outlet>
 
-<form>
-  <mat-form-field>
-    <input matInput placeholder="username" [(ngModel)]="userSearch" name="username">
-  </mat-form-field>
-  <div>
-    <button type="submit" mat-raised-button (click)="findTheDude()" color="primary">Search</button>
-  </div>
-</form>
+
 
 <div *ngIf="userguy?.avatar_url">
   <img src="{{userguy?.avatar_url}}" class="ava-image">

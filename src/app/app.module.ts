@@ -6,9 +6,9 @@ import { AppComponent } from './app.component';
 import {AppMaterialModule} from "./app-material/app-material.module";
 import {CoreModule} from "../core/core.module";
 import {AppRoutingModule} from "./app-routing.module";
-import {FormsModule} from "@angular/forms";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ResultModule} from "./result/result.module";
+import {SearchModule} from "./search/search.module";
 
 
 @NgModule({
@@ -21,7 +21,7 @@ import {ResultModule} from "./result/result.module";
     CoreModule,
     AppRoutingModule,
     ResultModule,
-    FormsModule,
+    SearchModule,
     BrowserAnimationsModule
   ],
   providers: [],
