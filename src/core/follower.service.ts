@@ -4,6 +4,7 @@ import {Observable, Subject} from "rxjs";
 import {GithubSearchService} from "./github.search.service";
 import "rxjs/add/observable/forkJoin";
 import {FollowerPaginationService} from "./follower.pagination.service";
+import {HttpResponse} from "@angular/common/http";
 
 @Injectable()
 export class FollowerService{
@@ -25,15 +26,18 @@ export class FollowerService{
   }
 
   private followerLoadHandler(followersUrl: string){
+    let httpResponseSubject: Subject<HttpResponse<FollowerModel[]>> = new Subject();
     let httpResponseObs = this.gitHubSearchService.getFollowers(followersUrl);
-    this.followerPaginationService.addPaginationInformation(httpResponseObs);
-    httpResponseObs.subscribe(
+
+    this.followerPaginationService.addPaginationInformation(httpResponseSubject);
+    httpResponseSubject.subscribe(
       data=>{
         this.followers = this.followers.concat(data.body);
         console.log(this.followers);
         this.followersSubject.next(this.followers);
       }
     );
+    httpResponseObs.subscribe(httpResponseSubject);
   }
 
   public loadMoreFollowers(){
