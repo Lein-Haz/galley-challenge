@@ -5,6 +5,10 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import {AppMaterialModule} from "./app-material/app-material.module";
 import {CoreModule} from "../core/core.module";
+import {AppRoutingModule} from "./app-routing.module";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {ResultModule} from "./result/result.module";
+import {SearchModule} from "./search/search.module";
 
 
 @NgModule({
@@ -14,7 +18,11 @@ import {CoreModule} from "../core/core.module";
   imports: [
     BrowserModule,
     AppMaterialModule,
-    CoreModule
+    CoreModule,
+    AppRoutingModule,
+    ResultModule,
+    SearchModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

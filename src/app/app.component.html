@@ -1,17 +1,14 @@
 
 <div>
   <mat-toolbar>
-    {{title}} yo
+    <div [routerLink]="['/']">{{title}}</div>
   </mat-toolbar>
   <h1>
     Welcome to {{title}}!
   </h1>
 </div>
-<h2>Nothing here man</h2>
 
-<div>
-  <div>We got {{userguy.name}}</div>
-  <div>He's got {{userguy.followers}}</div>
-  <div>We's pulled {{followerList.length}}</div>
-</div>
+<user-search (userSearchResultEmitter)="searchResultHandler($event)"></user-search>
+
+<router-outlet></router-outlet>
 

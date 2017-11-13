@@ -4,6 +4,7 @@ import {ApiService} from "./api.service";
 import {HttpClientModule} from "@angular/common/http";
 import {GithubSearchService} from "./github.search.service";
 import {FollowerService} from "./follower.service";
+import {UserService} from "./user.service";
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import {FollowerService} from "./follower.service";
   providers: [
     ApiService,
     GithubSearchService,
-    FollowerService
+    FollowerService,
+    UserService
   ],
   bootstrap: []
 })
