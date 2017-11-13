@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ResultRoutingModule } from './result-routing.module';
 import { ResultComponent } from './result.component';
+import {ResultUserComponent} from "./user/result-user.component";
 
 @NgModule({
   imports: [
@@ -10,7 +11,8 @@ import { ResultComponent } from './result.component';
     ResultRoutingModule
   ],
   declarations: [
-    ResultComponent
+    ResultComponent,
+    ResultUserComponent
   ]
 })
 export class ResultModule { }
