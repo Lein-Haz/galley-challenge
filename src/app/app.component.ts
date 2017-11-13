@@ -11,11 +11,6 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class AppComponent implements OnInit{
 
-  public userguy: UserModel;
-  public followerList: FollowerModel[];
-
-  public userSearch: string;
-
   constructor(
     private followerServ: FollowerService,
     private router: Router,
@@ -27,9 +22,7 @@ export class AppComponent implements OnInit{
   }
 
   searchResultHandler(user: UserModel){
-      console.log("we got a guy");
-      console.log(user);
-      this.router.navigate(['', user.login]);
+    this.router.navigate(['', user.login]);
   }
 
   title = 'OTP';

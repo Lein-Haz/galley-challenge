@@ -1,7 +1,7 @@
 
 <div>
   <mat-toolbar>
-    {{title}}
+    <div [routerLink]="['/']">{{title}}</div>
   </mat-toolbar>
   <h1>
     Welcome to {{title}}!
@@ -11,8 +11,4 @@
 <user-search (userSearchResultEmitter)="searchResultHandler($event)"></user-search>
 
 <router-outlet></router-outlet>
-
-
-
-
 

@@ -4,7 +4,6 @@ import {FollowerModel} from "../../core/models/follower.model";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {Observable} from "rxjs";
 import "rxjs/add/operator/switchMap";
-import "rxjs/add/operator/mergeMap";
 import {UserService} from "../../core/user.service";
 
 @Component({
@@ -15,9 +14,9 @@ import {UserService} from "../../core/user.service";
 })
 export class ResultComponent implements OnInit {
 
-  @Input()
   public user: UserModel;
 
+  private userObs: Observable<UserModel>;
 
   public followers: FollowerModel[];
 
@@ -32,17 +31,11 @@ export class ResultComponent implements OnInit {
   ngOnInit() {
     console.log(this.activatedRoute);
 
-    let aThing = this.activatedRoute.paramMap
-      .switchMap((params: ParamMap)=>params.getAll('id'));
-
-
     if(this.userService.user){
       this.user = this.userService.user;
     }else{
       this.loadUser();
     }
-
-    console.log(this.user);
   }
 
   /* if we are just using the url instead of the search flow */
@@ -55,8 +48,14 @@ export class ResultComponent implements OnInit {
     this.uhh.subscribe(data=>{
       console.log("uhh here is");
       console.log(data);
-      console.log("We need to load again");
+      this.userObs = this.userService.getOrLoadUser(data);
     });
+
+    this.userObs.subscribe(
+      data=>{
+        this.user = data;
+      }
+    );
   }
 
 }

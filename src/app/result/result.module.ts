@@ -9,6 +9,8 @@ import { ResultComponent } from './result.component';
     CommonModule,
     ResultRoutingModule
   ],
-  declarations: [ResultComponent]
+  declarations: [
+    ResultComponent
+  ]
 })
 export class ResultModule { }

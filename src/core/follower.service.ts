@@ -1,5 +1,6 @@
 import {Injectable} from "@angular/core";
 import {ConstantService} from "./constants";
+import {FollowerModel} from "./models/follower.model";
 
 
 interface PaginationObject{
@@ -9,6 +10,8 @@ interface PaginationObject{
 
 @Injectable()
 export class FollowerService{
+
+  private followers: FollowerModel[];
 
   public getNextFollowersUrl(headerLinkString: string): string{
     let paginationArray = this.parseHeaderLink(headerLinkString);

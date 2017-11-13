@@ -8,7 +8,9 @@ import {HttpResponse} from "@angular/common/http";
 @Injectable()
 export class GithubSearchService{
 
-  constructor(private apiService: ApiService){}
+  constructor(
+    private apiService: ApiService
+  ){}
 
   getUser(username: string): Observable<UserModel>{
     return this.apiService.apiGet<UserModel>('https://api.github.com/users/' + username);
