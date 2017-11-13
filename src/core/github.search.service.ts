@@ -20,17 +20,8 @@ export class GithubSearchService{
     return this.apiService.apiGet<FollowerModel[]>(followersUrl, {params: {per_page: 100}});
   }
 
-  private getPaginatedFollowers(followersUrl: string){
-    let userRes = this.apiService.apiGet<HttpResponse<FollowerModel[]>>(followersUrl, {observe: 'response'});
-    userRes.subscribe(
-      data => {
-        console.log(data);
-        console.log(data.headers.get('Link'));
-      },
-      err => {
-        this.apiService.handleApiError(err);
-      }
-    );
+  public getFollowers(followersUrl: string): Observable<HttpResponse<FollowerModel[]>>{
+    return this.apiService.apiGet<HttpResponse<FollowerModel[]>>(followersUrl, {observe: 'response'});
   }
 
 

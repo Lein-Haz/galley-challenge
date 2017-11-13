@@ -5,6 +5,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {GithubSearchService} from "./github.search.service";
 import {FollowerService} from "./follower.service";
 import {UserService} from "./user.service";
+import {FollowerPaginationService} from "./follower.pagination.service";
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import {UserService} from "./user.service";
     ApiService,
     GithubSearchService,
     FollowerService,
-    UserService
+    UserService,
+    FollowerPaginationService
   ],
   bootstrap: []
 })
