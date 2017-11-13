@@ -16,12 +16,8 @@ export class GithubSearchService{
     return this.apiService.apiGet<UserModel>('https://api.github.com/users/' + username);
   }
 
-  public getInitialFollowers(followersUrl: string): Observable<FollowerModel[]>{
-    return this.apiService.apiGet<FollowerModel[]>(followersUrl, {params: {per_page: 100}});
-  }
-
-  public getFollowers(followersUrl: string): Observable<HttpResponse<FollowerModel[]>>{
-    return this.apiService.apiGet<HttpResponse<FollowerModel[]>>(followersUrl, {observe: 'response'});
+  public getFollowers(followersUrl:string, options?: {}): Observable<HttpResponse<FollowerModel[]>>{
+    return this.apiService.apiGet<HttpResponse<FollowerModel[]>>(followersUrl, options);
   }
 
 

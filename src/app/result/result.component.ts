@@ -34,9 +34,10 @@ export class ResultComponent implements OnInit, OnDestroy {
   ngOnInit() {
     if(this.userService.user){
       this.user = this.userService.user;
+      this.loadFollowers(this.user.followers_url);
     }else{
       console.log("I would load, but I'm not right now");
-      //this.loadUser();
+      this.loadUser();
     }
 
     let followersSubject = this.followerService.getFollowersSubject();
@@ -69,11 +70,11 @@ export class ResultComponent implements OnInit, OnDestroy {
   }
 
   private loadFollowers(followersUrl: string){
-    this.followerService.loadFirst(followersUrl);
+    this.followerService.loadInitialFollowers(followersUrl);
   }
 
   public clickyLoad(){
-    this.followerService.loadFirst('https://api.github.com/users/holman/followers?per_page=100');
+    this.followerService.getridOfThisLoader('https://api.github.com/users/holman/followers?per_page=100');
   }
 
   public loadMore(){

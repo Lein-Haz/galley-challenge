@@ -25,4 +25,12 @@ export class ConstantService {
     NEXT: 'rel="next"',
     PREV: 'rel="prev"',
   };
+
+  public static FOLLOWER_HTTP_PARAMS = {
+    INITIAL: {
+      params: {per_page: 100},
+      observe: 'response'
+    },
+    PAGINATED: {observe: 'response'}
+  }
 }

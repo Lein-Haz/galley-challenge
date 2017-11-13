@@ -5,6 +5,7 @@ import {GithubSearchService} from "./github.search.service";
 import "rxjs/add/observable/forkJoin";
 import {FollowerPaginationService} from "./follower.pagination.service";
 import {HttpResponse} from "@angular/common/http";
+import {ConstantService} from "./constants";
 
 @Injectable()
 export class FollowerService{
@@ -21,19 +22,22 @@ export class FollowerService{
     return this.followersSubject;
   }
 
-  public loadFirst(followersUrl: string){
-    this.followerLoadHandler(followersUrl);
+  public loadInitialFollowers(followersUrl: string){
+    this.followerLoadHandler(followersUrl, ConstantService.FOLLOWER_HTTP_PARAMS.INITIAL);
   }
 
-  private followerLoadHandler(followersUrl: string){
+  public getridOfThisLoader(followersUrl: string){
+    this.followerLoadHandler(followersUrl, ConstantService.FOLLOWER_HTTP_PARAMS.PAGINATED);
+  }
+
+  private followerLoadHandler(followersUrl:string, options?: {}){
     let httpResponseSubject: Subject<HttpResponse<FollowerModel[]>> = new Subject();
-    let httpResponseObs = this.gitHubSearchService.getFollowers(followersUrl);
+    let httpResponseObs = this.gitHubSearchService.getFollowers(followersUrl, options);
 
     this.followerPaginationService.addPaginationInformation(httpResponseSubject);
     httpResponseSubject.subscribe(
       data=>{
         this.followers = this.followers.concat(data.body);
-        console.log(this.followers);
         this.followersSubject.next(this.followers);
       }
     );
@@ -50,9 +54,7 @@ export class FollowerService{
     );
     urlString.subscribe(
       nextFollowersUrl=>{
-        console.log("in the url string sub");
-        console.log(nextFollowersUrl);
-        this.followerLoadHandler(nextFollowersUrl);
+        this.followerLoadHandler(nextFollowersUrl, ConstantService.FOLLOWER_HTTP_PARAMS.PAGINATED);
       }
     );
   }
