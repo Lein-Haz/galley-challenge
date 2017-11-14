@@ -3,17 +3,20 @@
 </mat-toolbar>
 <mat-card>
   <result-user [user]="user"></result-user>
+
+  <div>
+    <div>Followers loaded: {{followers?.length}}/{{user?.followers}}</div>
+  </div>
+
+  <div class="followers-grid">
+    <result-follower *ngFor="let follower of followers;" [follower]="follower"></result-follower>
+  </div>
+
+  <div class="load-more">
+    <button *ngIf="loadMoreEnabled" mat-raised-button (click)="loadMore()" color="accent">load more</button>
+  </div>
 </mat-card>
-
-
-<div *ngFor="let follower of followers;">
-  <result-follower [follower]="follower"></result-follower>
-</div>
 
 <div>
   <button mat-raised-button (click)="clickyLoad()" color="warn">clicky!!</button>
-</div>
-
-<div>
-  <button *ngIf="loadMoreEnabled" mat-raised-button (click)="loadMore()" color="accent">load more</button>
 </div>

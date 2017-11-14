@@ -21,3 +21,15 @@ $result-opacity: 0.6;
     padding-left: 5px;
   }
 }
+
+.avatar-image-container{
+  position: relative;
+  &:after{
+    content: "";
+    display: block;
+    position: absolute;
+    border-bottom: 3px solid red;
+    width: 100%;
+
+  }
+}

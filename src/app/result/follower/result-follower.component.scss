@@ -1,0 +1,50 @@
+@import "../../../theme/app-theme";
+
+result-follower{
+  box-sizing: border-box;
+  padding: 0.1em;
+  display: flex;
+  @media #{$break-point-xs} {
+    flex-basis: 100%;
+  }
+  @media #{$break-point-sm} {
+    flex-basis: 50%;
+  }
+  @media #{$break-point-md} {
+    flex-basis: 33%;
+  }
+  @media #{$break-point-lg} {
+    flex-basis: 25%;
+  }
+  .follower-card{
+    padding: 0;
+  }
+}
+
+.follower-card{
+  width: 100%;
+  display: flex;
+  align-content: center;
+}
+
+.follower-info{
+  display: flex;
+  flex-basis: 80%;
+  padding: 0.45em;
+}
+
+.follower-avatar-container{
+  display: flex;
+  flex-basis: 20%;
+}
+
+.follower-avatar{
+  height: 100%;
+  width: 100%;
+  img{
+    display: block;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
