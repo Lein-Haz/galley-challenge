@@ -4,7 +4,7 @@ import {FollowerPaginationModel} from "./models/followerPagination.model";
 import {ConstantService} from "./constants";
 import {HttpResponse} from "@angular/common/http";
 import {FollowerModel} from "./models/follower.model";
-import {isUndefined} from "util";
+import {isNullOrUndefined} from "util";
 import {Subject} from "rxjs/Subject";
 
 @Injectable()
@@ -49,7 +49,7 @@ export class FollowerPaginationService{
     httpResponseObs.subscribe(
       httpResponse=>{
         let linkString = httpResponse.headers.get('Link');
-        if(isUndefined(linkString)){
+        if(isNullOrUndefined(linkString)){
           this.lockLoading();
         }else{
           this.getLinkString(linkString);
@@ -61,7 +61,7 @@ export class FollowerPaginationService{
   private getLinkString(linkString: string){
     let nextPaginationObject = this.getNextFollowerPaginationModel(this.parseHeaderLink(linkString));
 
-    if(isUndefined(nextPaginationObject)){
+    if(isNullOrUndefined(nextPaginationObject)){
       this.lockLoading();
     }else{
       this.allowLoading();
@@ -72,7 +72,7 @@ export class FollowerPaginationService{
   private setNewPaginationData(nextPaginationObject: FollowerPaginationModel){
     this.nextPageNumberToLoad = nextPaginationObject.page;
 
-    if(isUndefined(this.followerPaginationArray)){
+    if(isNullOrUndefined(this.followerPaginationArray)){
       this.followerPaginationArray = Observable.from([nextPaginationObject]);
     }else{
       this.followerPaginationArray = this.followerPaginationArray.merge(Observable.from([nextPaginationObject]));
