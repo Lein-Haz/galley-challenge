@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {Observable} from "rxjs";
+import {Observable} from "rxjs/Observable";
 import {FollowerPaginationModel} from "./models/followerPagination.model";
 import {ConstantService} from "./constants";
 import {HttpResponse} from "@angular/common/http";

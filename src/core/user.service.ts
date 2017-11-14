@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {UserModel} from "./models/user.model";
 import {GithubSearchService} from "./github.search.service";
-import {Observable} from "rxjs";
+import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class UserService{

@@ -1,11 +1,12 @@
 import {Injectable} from "@angular/core";
 import {FollowerModel} from "./models/follower.model";
-import {Observable, Subject} from "rxjs";
 import {GithubSearchService} from "./github.search.service";
 import "rxjs/add/observable/forkJoin";
 import {FollowerPaginationService} from "./follower.pagination.service";
 import {HttpResponse} from "@angular/common/http";
 import {ConstantService} from "./constants";
+import {Observable} from "rxjs/Observable";
+import {Subject} from "rxjs/Subject";
 
 @Injectable()
 export class FollowerService{
