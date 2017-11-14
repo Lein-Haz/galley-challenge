@@ -1,5 +1,49 @@
 @import './theme/app-theme';
 
+body{
+  margin: 0;
+  background: mat-color($otp-app-primary, 50);
+}
+
 mat-toolbar.mat-toolbar-single-row{
   background: mat-color($otp-app-primary, 500);
+}
+
+.app-comp + .app-comp{
+  margin-top: 0.75em;
+}
+
+mat-toolbar.mat-toolbar{
+  height: 8vh;
+  @media #{$break-point-xs} {
+    padding-left: $app-gutter-padding-xs;
+    padding-right: $app-gutter-padding-xs;
+  }
+  @media #{$break-point-sm} {
+    padding-left: $app-gutter-padding-sm;
+    padding-right: $app-gutter-padding-sm;
+  }
+  @media #{$break-point-md} {
+    padding-left: $app-gutter-padding-md;
+    padding-right: $app-gutter-padding-md;
+  }
+  @media #{$break-point-lg} {
+    padding-left: $app-gutter-padding-lg;
+    padding-right: $app-gutter-padding-lg;
+  }
+}
+
+mat-card.mat-card{
+  @media #{$break-point-xs} {
+    padding: $app-vert-padding-xs $app-gutter-padding-xs;
+  }
+  @media #{$break-point-sm} {
+    padding: $app-vert-padding-sm $app-gutter-padding-sm;
+  }
+  @media #{$break-point-md} {
+    padding: $app-vert-padding-md $app-gutter-padding-md;
+  }
+  @media #{$break-point-lg} {
+    padding: $app-vert-padding-lg $app-gutter-padding-lg;
+  }
 }

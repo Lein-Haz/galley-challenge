@@ -1,0 +1,18 @@
+app-result{
+  width: 100%;
+}
+
+.followers-grid{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.load-more{
+  margin: 0.5em 0;
+  display: flex;
+  justify-content: center;
+
+  button{
+    display: flex;
+  }
+}

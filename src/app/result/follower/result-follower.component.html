@@ -1,4 +1,8 @@
-<div>
-  <div>{{follower.login}}</div>
-  <div>{{follower.html_url}}</div>
-</div>
+<mat-card class="follower-card">
+  <div class="follower-avatar-container">
+    <div class="follower-avatar">
+      <img src="{{follower.avatar_url}}" alt="Github Avatar">
+    </div>
+  </div>
+  <div class="follower-info">{{follower.login}}</div>
+</mat-card>

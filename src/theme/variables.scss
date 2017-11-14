@@ -1,0 +1,22 @@
+$app-line-height: 2em;
+
+$break-point-xs: "screen and (max-width: 599px)";
+$break-point-sm: "screen and (min-width: 600px) and (max-width: 959px)";
+$break-point-md: "screen and (min-width: 960px) and (max-width: 1279px)";
+$break-point-lg: "screen and (min-width: 1280px)";
+
+$break-point-mob: "screen and (max-width: 959px)";
+$break-point-dt: "screen and (min-width: 960px)";
+
+$basic-hue: 500;
+$top-nav-hue: 700;
+
+$app-gutter-padding-xs: 0.5em;
+$app-gutter-padding-sm: 0.5em;
+$app-gutter-padding-md: 0.75em;
+$app-gutter-padding-lg: 0.75em;
+
+$app-vert-padding-xs: 1em;
+$app-vert-padding-sm: 1em;
+$app-vert-padding-md: 1.5em;
+$app-vert-padding-lg: 1.5em;

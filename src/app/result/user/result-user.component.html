@@ -1,9 +1,18 @@
-<div *ngIf="user?.avatar_url">
-  <img src="{{user?.avatar_url}}" class="ava-image">
+<div class="user-info">
+  <div class="info-wrap">
+    <h3>
+      Username: {{user?.login}}
+    </h3>
+    <div class="details">
+      <span> Name: {{user?.name}}</span>
+      <span> Total Followers: {{user?.followers}}</span>
+      <span> Location: {{user?.location}}</span>
+    </div>
+  </div>
+</div>
+<div class="avatar-image-container">
+  <div *ngIf="user?.avatar_url">
+    <img src="{{user?.avatar_url}}" alt="Github Avatar">
+  </div>
 </div>
 
-<div>
-  <div>We got {{user?.name}}</div>
-  <div>He's got {{user?.followers}}</div>
-  <div>We's pulled {{followers?.length}}</div>
-</div>
