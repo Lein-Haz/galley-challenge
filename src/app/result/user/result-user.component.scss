@@ -1,0 +1,23 @@
+@import "../../../theme/app-theme";
+
+$result-hue: 600;
+$result-opacity: 0.6;
+
+.info-wrap{
+  h1, h2, h3, h4, h5, h6{
+    margin: 0.25em 0;
+    color: mat-color($otp-app-accent, $result-hue);
+  }
+}
+
+.details{
+  span{
+    font-size: small;
+    font-weight: 600;
+    color: mat-color($otp-app-accent, $result-hue, $result-opacity);
+  }
+  span + span{
+    border-left: 1px solid mat-color($otp-app-accent, $result-hue, $result-opacity);
+    padding-left: 5px;
+  }
+}
