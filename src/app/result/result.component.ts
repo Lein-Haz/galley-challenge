@@ -22,6 +22,9 @@ export class ResultComponent implements OnInit, OnDestroy {
   private followerSubscription: Subscription;
   public followers: FollowerModel[] = [];
 
+  private loadMoreEnabledSubscription: Subscription;
+  public loadMoreEnabled: boolean = false;
+
   private paramUserName: Observable<string>;
 
   constructor(
@@ -44,6 +47,12 @@ export class ResultComponent implements OnInit, OnDestroy {
     this.followerSubscription = followersSubject.subscribe(
       followers=>{
         this.followers = followers;
+      }
+    );
+    let loadMoreSubject = this.followerService.getLoadMoreSubject();
+    this.loadMoreEnabledSubscription = loadMoreSubject.subscribe(
+      canLoadMoreBoolean=>{
+        this.loadMoreEnabled = canLoadMoreBoolean;
       }
     );
   }
@@ -70,11 +79,13 @@ export class ResultComponent implements OnInit, OnDestroy {
   }
 
   private loadFollowers(followersUrl: string){
-    this.followerService.loadInitialFollowers(followersUrl);
+    if(this.user.followers > 0){
+      this.followerService.loadInitialFollowers(followersUrl);
+    }
   }
 
   public clickyLoad(){
-    this.followerService.getridOfThisLoader('https://api.github.com/users/holman/followers?per_page=100');
+    this.followerService.getridOfThisLoader('https://api.github.com/users/anotherjesse/followers?per_page=100');
   }
 
   public loadMore(){
@@ -83,6 +94,7 @@ export class ResultComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.followerSubscription.unsubscribe();
+    this.loadMoreEnabledSubscription.unsubscribe();
   }
 
 }

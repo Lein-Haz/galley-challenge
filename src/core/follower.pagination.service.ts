@@ -5,6 +5,7 @@ import {ConstantService} from "./constants";
 import {HttpResponse} from "@angular/common/http";
 import {FollowerModel} from "./models/follower.model";
 import {isUndefined} from "util";
+import {Subject} from "rxjs/Subject";
 
 @Injectable()
 export class FollowerPaginationService{
@@ -12,6 +13,8 @@ export class FollowerPaginationService{
   private followerPaginationArray: Observable<FollowerPaginationModel>;
   private paginationMapObs: Observable<FollowerPaginationModel>;
   private nextPageNumberToLoad: number = 0;
+  private canLoadMore: boolean = false;
+  private canLoadSub: Subject<boolean> = new Subject();
 
   /* Grr, remembered after I had finished this that I didn't need all the first, prev, next, last stuff. */
   private parseHeaderLink(headerLinkString: string): FollowerPaginationModel[]{
@@ -38,26 +41,57 @@ export class FollowerPaginationService{
     return fullFollowerPaginationArray[nextRelationIndex];
   }
 
+  public getLoadMoreSubject(){
+    return this.canLoadSub;
+  }
+
   public addPaginationInformation(httpResponseObs:Observable<HttpResponse<FollowerModel[]>>){
     httpResponseObs.subscribe(
       httpResponse=>{
         let linkString = httpResponse.headers.get('Link');
-        let nextPaginationObject = this.getNextFollowerPaginationModel(this.parseHeaderLink(linkString));
-
-        this.nextPageNumberToLoad = nextPaginationObject.page;
-
-        if(isUndefined(this.followerPaginationArray)){
-          this.followerPaginationArray = Observable.from([nextPaginationObject]);
+        if(isUndefined(linkString)){
+          this.lockLoading();
         }else{
-          this.followerPaginationArray = this.followerPaginationArray.merge(Observable.from([nextPaginationObject]));
+          this.getLinkString(linkString);
         }
-
-        this.paginationMapObs = this.followerPaginationArray.map((nextFollowerPagination, index)=>{
-          //console.log(nextFollowerPagination);
-          return nextFollowerPagination;
-        });
       }
     );
+  }
+
+  private getLinkString(linkString: string){
+    let nextPaginationObject = this.getNextFollowerPaginationModel(this.parseHeaderLink(linkString));
+
+    if(isUndefined(nextPaginationObject)){
+      this.lockLoading();
+    }else{
+      this.allowLoading();
+      this.setNewPaginationData(nextPaginationObject);
+    }
+  }
+
+  private setNewPaginationData(nextPaginationObject: FollowerPaginationModel){
+    this.nextPageNumberToLoad = nextPaginationObject.page;
+
+    if(isUndefined(this.followerPaginationArray)){
+      this.followerPaginationArray = Observable.from([nextPaginationObject]);
+    }else{
+      this.followerPaginationArray = this.followerPaginationArray.merge(Observable.from([nextPaginationObject]));
+    }
+
+    //Turns the merged observable in a flat one we can easily filter later
+    this.paginationMapObs = this.followerPaginationArray.map((nextFollowerPagination, index)=>{
+      return nextFollowerPagination;
+    });
+  }
+
+  private lockLoading(){
+    this.canLoadMore = false;
+    this.canLoadSub.next(this.canLoadMore);
+  }
+
+  private allowLoading(){
+    this.canLoadMore = true;
+    this.canLoadSub.next(this.canLoadMore);
   }
 
   public nextFollowerPaginationObject():Observable<FollowerPaginationModel>{

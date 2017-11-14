@@ -22,6 +22,10 @@ export class FollowerService{
     return this.followersSubject;
   }
 
+  public getLoadMoreSubject():Subject<boolean>{
+    return this.followerPaginationService.getLoadMoreSubject();
+  }
+
   public loadInitialFollowers(followersUrl: string){
     this.followerLoadHandler(followersUrl, ConstantService.FOLLOWER_HTTP_PARAMS.INITIAL);
   }

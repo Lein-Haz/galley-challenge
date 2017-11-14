@@ -12,9 +12,7 @@
   <button mat-raised-button (click)="clickyLoad()" color="warn">clicky!!</button>
 </div>
 
-
-
 <div>
-  <button mat-raised-button (click)="loadMore()" color="accent">load more</button>
+  <button *ngIf="loadMoreEnabled" mat-raised-button (click)="loadMore()" color="accent">load more</button>
 </div>
 
