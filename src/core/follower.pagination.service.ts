@@ -7,9 +7,8 @@ import {FollowerModel} from "./models/follower.model";
 import {isNullOrUndefined} from "util";
 import {Subject} from "rxjs/Subject";
 import"rxjs/add/observable/from";
-import"rxjs/operator/map";
-import"rxjs/operator/merge";
-import "rxjs/Rx";
+import"rxjs/add/operator/map";
+import"rxjs/add/operator/merge";
 
 @Injectable()
 export class FollowerPaginationService{
