@@ -9,7 +9,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "testcov": "ng test --sourcemap=false --code-coverage"
+    "testcov": "ng test --sourcemap=false --code-coverage",
+    "totheskies": "ng build --prod && firebase deploy"
   },
   "private": true,
   "dependencies": {
