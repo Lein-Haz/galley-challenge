@@ -80,8 +80,8 @@ export class ResultComponent implements OnInit, OnDestroy {
 
   private loadFollowers(followersUrl: string){
     if(this.user.followers > 0){
-      //this.followerService.loadInitialFollowers(followersUrl);
-      console.log("not loading followers RN");
+      this.followerService.loadInitialFollowers(followersUrl);
+      //console.log("not loading followers RN");
     }
   }
 

@@ -5,6 +5,7 @@ import { ResultRoutingModule } from './result-routing.module';
 import { ResultComponent } from './result.component';
 import {ResultUserComponent} from "./user/result-user.component";
 import {AppMaterialModule} from "../app-material/app-material.module";
+import {ResultFollowerComponent} from "./follower/result-follower.component";
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import {AppMaterialModule} from "../app-material/app-material.module";
   ],
   declarations: [
     ResultComponent,
-    ResultUserComponent
+    ResultUserComponent,
+    ResultFollowerComponent
   ]
 })
 export class ResultModule { }
