@@ -3,6 +3,11 @@
 body{
   margin: 0;
   background: mat-color($otp-app-primary, 50);
+  font-family: Roboto, Verdana, "Helvetica Neue", "sans-serif";
+}
+
+.text-center{
+  text-align: center;
 }
 
 mat-toolbar.mat-toolbar-single-row{
