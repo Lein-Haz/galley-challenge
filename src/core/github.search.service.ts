@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {UserModel} from "./models/user.model";
 import {ApiService} from "./api.service";
 import {FollowerModel} from "./models/follower.model";
-import {Observable} from "rxjs";
+import {Observable} from "rxjs/Observable";
 import {HttpResponse} from "@angular/common/http";
 
 @Injectable()
