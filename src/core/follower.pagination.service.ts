@@ -6,6 +6,10 @@ import {HttpResponse} from "@angular/common/http";
 import {FollowerModel} from "./models/follower.model";
 import {isNullOrUndefined} from "util";
 import {Subject} from "rxjs/Subject";
+import"rxjs/add/observable/from";
+import"rxjs/operator/map";
+import"rxjs/operator/merge";
+import "rxjs/Rx";
 
 @Injectable()
 export class FollowerPaginationService{
