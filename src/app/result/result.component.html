@@ -1,12 +1,6 @@
-<div *ngIf="user?.avatar_url">
-  <img src="{{user?.avatar_url}}" class="ava-image">
-</div>
 
-<div>
-  <div>We got {{user?.name}}</div>
-  <div>He's got {{user?.followers}}</div>
-  <div>We's pulled {{followers?.length}}</div>
-</div>
+
+<result-user [user]="user"></result-user>
 
 <div>
   <button mat-raised-button (click)="clickyLoad()" color="warn">clicky!!</button>
