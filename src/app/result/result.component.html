@@ -1,14 +1,16 @@
-<p>
-  result works!
-</p>
 
 
-<div *ngIf="user?.avatar_url">
-  <img src="{{user?.avatar_url}}" class="ava-image">
+<result-user [user]="user"></result-user>
+<div *ngFor="let follower of followers;">
+  <result-follower [follower]="follower"></result-follower>
+</div>
+
+
+<div>
+  <button mat-raised-button (click)="clickyLoad()" color="warn">clicky!!</button>
 </div>
 
 <div>
-  <div>We got {{user?.name}}</div>
-  <div>He's got {{user?.followers}}</div>
-  <div>We's pulled {{followers?.length}}</div>
+  <button *ngIf="loadMoreEnabled" mat-raised-button (click)="loadMore()" color="accent">load more</button>
 </div>
+

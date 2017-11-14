@@ -1,48 +1,65 @@
 import {Injectable} from "@angular/core";
-import {ConstantService} from "./constants";
 import {FollowerModel} from "./models/follower.model";
-
-
-interface PaginationObject{
-  relation: string;
-  link: string;
-}
+import {Observable, Subject} from "rxjs";
+import {GithubSearchService} from "./github.search.service";
+import "rxjs/add/observable/forkJoin";
+import {FollowerPaginationService} from "./follower.pagination.service";
+import {HttpResponse} from "@angular/common/http";
+import {ConstantService} from "./constants";
 
 @Injectable()
 export class FollowerService{
 
-  private followers: FollowerModel[];
+  constructor(
+    private gitHubSearchService: GithubSearchService,
+    private followerPaginationService: FollowerPaginationService
+  ){}
 
-  public getNextFollowersUrl(headerLinkString: string): string{
-    let paginationArray = this.parseHeaderLink(headerLinkString);
-    return this.getNextLink(paginationArray);
+  private followers: FollowerModel[] = [];
+  private followersSubject: Subject<FollowerModel[]> = new Subject();
+
+  public getFollowersSubject(): Subject<FollowerModel[]>{
+    return this.followersSubject;
   }
 
-  /* Grr, remembered after I had finished this that I didn't need all the first, prev, next, last stuff. */
-  private parseHeaderLink(headerLinkString: string): PaginationObject[]{
-    let linkPaginationResults = headerLinkString.match(ConstantService.REGEX.LINK_HEADER_PAGINATION_REGEX);
-    let paginationLinksArray = [];
-    if(linkPaginationResults && Array.isArray(linkPaginationResults) && linkPaginationResults.length > 0){
-      linkPaginationResults.forEach(linkPaginationString => {
-        let link = linkPaginationString.match(ConstantService.REGEX.LINK_EXTRACT_REGEX);
-        let relation = linkPaginationString.match(ConstantService.REGEX.RELATION_EXTRACT_REGEX);
-        let paginationObject: PaginationObject = {
-          relation: relation[0],
-          link: link[0]
-        };
-        paginationLinksArray.push(paginationObject);
-      });
-    }
-    return paginationLinksArray;
+  public getLoadMoreSubject():Subject<boolean>{
+    return this.followerPaginationService.getLoadMoreSubject();
   }
 
-  private getNextLink(paginationLinksArray: PaginationObject[]): string{
-    let returnUrl = "";
-    paginationLinksArray.forEach(paginationObject => {
-      if(paginationObject.relation === ConstantService.PAGINATION_RELATIONS.NEXT){
-        returnUrl = paginationObject.link;
+  public loadInitialFollowers(followersUrl: string){
+    this.followerLoadHandler(followersUrl, ConstantService.FOLLOWER_HTTP_PARAMS.INITIAL);
+  }
+
+  public getridOfThisLoader(followersUrl: string){
+    this.followerLoadHandler(followersUrl, ConstantService.FOLLOWER_HTTP_PARAMS.PAGINATED);
+  }
+
+  private followerLoadHandler(followersUrl:string, options?: {}){
+    let httpResponseSubject: Subject<HttpResponse<FollowerModel[]>> = new Subject();
+    let httpResponseObs = this.gitHubSearchService.getFollowers(followersUrl, options);
+
+    this.followerPaginationService.addPaginationInformation(httpResponseSubject);
+    httpResponseSubject.subscribe(
+      data=>{
+        this.followers = this.followers.concat(data.body);
+        this.followersSubject.next(this.followers);
       }
-    });
-    return returnUrl;
+    );
+    httpResponseObs.subscribe(httpResponseSubject);
+  }
+
+  public loadMoreFollowers(){
+    let urlString: Observable<string>;
+    let pagObs = this.followerPaginationService.nextFollowerPaginationObject();
+    pagObs.subscribe(
+      followerPagination=>{
+        urlString = Observable.of(followerPagination.link);
+      }
+    );
+    urlString.subscribe(
+      nextFollowersUrl=>{
+        this.followerLoadHandler(nextFollowersUrl, ConstantService.FOLLOWER_HTTP_PARAMS.PAGINATED);
+      }
+    );
   }
 }
