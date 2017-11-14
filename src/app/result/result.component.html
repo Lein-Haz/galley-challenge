@@ -1,10 +1,8 @@
-
-
 <result-user [user]="user"></result-user>
+
 <div *ngFor="let follower of followers;">
   <result-follower [follower]="follower"></result-follower>
 </div>
-
 
 <div>
   <button mat-raised-button (click)="clickyLoad()" color="warn">clicky!!</button>
@@ -13,4 +11,3 @@
 <div>
   <button *ngIf="loadMoreEnabled" mat-raised-button (click)="loadMore()" color="accent">load more</button>
 </div>
-
