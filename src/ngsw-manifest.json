@@ -1,0 +1,28 @@
+{
+  "routing": {
+    "index": "/index.html",
+    "routes": {
+      "/": {
+        "match": "exact"
+      }
+    }
+  },
+  "dynamic": {
+    "group": [
+      {
+        "name": "github",
+        "urls": {
+          "https://api.github.com/": {
+            "match": "prefix"
+          }
+        },
+        "cache": {
+          "optimizeFor": "performance",
+          "maxAgeMS": "604800000",
+          "maxEntries": 50,
+          "strategy": "lru"
+        }
+      }
+    ]
+  }
+}
