@@ -4,5 +4,16 @@
       <img src="{{follower.avatar_url}}" alt="Github Avatar">
     </div>
   </div>
-  <div class="follower-info">{{follower.login}}</div>
+  <div class="follower-info">
+    <div class="follower-text">
+      {{follower.login}}
+    </div>
+  </div>
+  <div class="button-container">
+    <a href="{{follower.html_url}}" target="_blank">
+      <button mat-icon-button>
+        <mat-icon svgIcon="github"></mat-icon>
+      </button>
+    </a>
+  </div>
 </mat-card>
