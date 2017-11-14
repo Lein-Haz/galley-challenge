@@ -1,0 +1,22 @@
+@import "../../theme/app-theme";
+
+user-search{
+  width:100%;
+}
+
+.search-form{
+  display: flex;
+  align-items:center;
+  flex-wrap: wrap;
+  mat-form-field.mat-form-field{
+    width: 100%;
+    font-size: 5em;
+    @media #{$break-point-xs} {
+      font-size: 2em;
+    }
+    @media #{$break-point-sm} {
+      font-size: 3em;
+    }
+  }
+}
+

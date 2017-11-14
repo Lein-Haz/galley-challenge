@@ -1,4 +1,36 @@
-.ava-image{
-  height:300px;
-  width:300px;
+@import "../theme/app-theme";
+
+.app-wrapper{
+  width: 100%;
+  display: block;
+  margin: 0.75em;
+  @media #{$break-point-xs} {
+    margin: 0.75em 0;
+  }
+  @media #{$break-point-sm} {
+    margin: 0.75em 0;
+  }
+}
+
+.app-comp{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  //flex-wrap: wrap;
+}
+
+.comp-wrap{
+  display: flex;
+  @media #{$break-point-xs} {
+    flex-basis: 100%;
+  }
+  @media #{$break-point-sm} {
+    flex-basis: 100%;
+  }
+  @media #{$break-point-md} {
+    flex-basis: 80%;
+  }
+  @media #{$break-point-lg} {
+    flex-basis: 66%;
+  }
 }

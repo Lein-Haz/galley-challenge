@@ -1,5 +1,14 @@
 @import './theme/app-theme';
 
+body{
+  margin: 0;
+  background: mat-color($otp-app-primary, 50);
+}
+
 mat-toolbar.mat-toolbar-single-row{
   background: mat-color($otp-app-primary, 500);
+}
+
+mat-toolbar.mat-toolbar{
+  height: 8vh;
 }

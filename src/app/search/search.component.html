@@ -1,8 +1,15 @@
-<form>
-  <mat-form-field>
-    <input matInput placeholder="username" [(ngModel)]="userSearch" name="username">
-  </mat-form-field>
+<mat-toolbar>
+  <div>Git User Search</div>
+</mat-toolbar>
+<mat-card>
   <div>
-    <button type="submit" mat-raised-button (click)="searchForUser()" color="primary">Search</button>
+    <form class="search-form">
+      <mat-form-field color="accent">
+        <input matInput placeholder="username" [(ngModel)]="userSearch" name="username" >
+      </mat-form-field>
+      <div>
+        <button type="submit" mat-raised-button (click)="searchForUser()" color="accent">Search</button>
+      </div>
+    </form>
   </div>
-</form>
+</mat-card>
