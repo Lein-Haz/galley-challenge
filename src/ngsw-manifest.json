@@ -22,6 +22,19 @@
           "maxEntries": 50,
           "strategy": "lru"
         }
+      }, {
+        "name": "githubAvatars",
+        "urls": {
+          "https://avatars3.githubusercontent.com": {
+            "match": "prefix"
+          }
+        },
+        "cache": {
+          "optimizeFor": "performance",
+          "maxAgeMS": "604800000",
+          "maxEntries": 50,
+          "strategy": "lru"
+        }
       }
     ]
   }
