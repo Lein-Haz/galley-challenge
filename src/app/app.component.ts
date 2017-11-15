@@ -13,6 +13,7 @@ export class AppComponent implements OnInit{
     private matIconRegistry: MatIconRegistry,
     private sanitizer: DomSanitizer
   ){
+    /* Registers the icon for the github logo svg making it available for the application */
     matIconRegistry.addSvgIcon(
       'github',
       sanitizer.bypassSecurityTrustResourceUrl('assets/github-black-circle.svg')
@@ -22,6 +23,4 @@ export class AppComponent implements OnInit{
   ngOnInit(): void {
 
   }
-
-  title = 'OTP';
 }
