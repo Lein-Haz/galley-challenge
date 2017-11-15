@@ -10,6 +10,10 @@ body{
   text-align: center;
 }
 
+.tool-bar-spacer{
+  flex: 1 1 auto;
+}
+
 mat-toolbar.mat-toolbar-single-row{
   background: mat-color($otp-app-primary, 500);
 }

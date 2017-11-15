@@ -27,6 +27,11 @@ export class FollowerService{
     return this.followerPaginationService.getLoadMoreSubject();
   }
 
+  public clearFollowers(){
+    this.followers = [];
+    this.followersSubject.next(this.followers);
+  }
+
   public loadInitialFollowers(followersUrl: string){
     this.followerLoadHandler(followersUrl, ConstantService.FOLLOWER_HTTP_PARAMS.INITIAL);
   }

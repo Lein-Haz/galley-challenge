@@ -1,5 +1,9 @@
 <mat-toolbar>
-  <div>Search Results</div>
+  <span>Search Results</span>
+  <span class="tool-bar-spacer"></span>
+  <span>
+    <button routerLink="/search" mat-button><mat-icon>search</mat-icon> Back</button>
+  </span>
 </mat-toolbar>
 <mat-card>
   <result-user [user]="user"></result-user>

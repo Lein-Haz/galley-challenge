@@ -35,6 +35,7 @@ export class ResultComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    this.followerService.clearFollowers();
     if(this.userService.user){
       this.user = this.userService.user;
       this.loadFollowers(this.user.followers_url);
