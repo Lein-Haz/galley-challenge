@@ -4,6 +4,12 @@
     "routes": {
       "/": {
         "match": "exact"
+      },
+      "/search": {
+        "match": "exact"
+      },
+      "\/results\/.*": {
+        "match": "regex"
       }
     }
   },
@@ -13,6 +19,28 @@
         "name": "github",
         "urls": {
           "https://api.github.com/": {
+            "match": "prefix"
+          }
+        },
+        "cache": {
+          "optimizeFor": "performance",
+          "maxAgeMS": "604800000",
+          "maxEntries": 50,
+          "strategy": "lru"
+        }
+      }, {
+        "name": "githubAvatars",
+        "urls": {
+          "https://avatars0.githubusercontent.com": {
+            "match": "prefix"
+          },
+          "https://avatars1.githubusercontent.com": {
+            "match": "prefix"
+          },
+          "https://avatars2.githubusercontent.com": {
+            "match": "prefix"
+          },
+          "https://avatars3.githubusercontent.com": {
             "match": "prefix"
           }
         },

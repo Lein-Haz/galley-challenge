@@ -1,8 +1,10 @@
 import {Component, EventEmitter, OnInit, Output, ViewEncapsulation} from '@angular/core';
 import {GithubSearchService} from "../../core/github.search.service";
-import {FollowerService} from "../../core/follower.service";
 import {UserModel} from "../../core/models/user.model";
 import {UserService} from "../../core/user.service";
+import {MatSnackBar} from "@angular/material";
+import {NoUserSnackComponent} from "./no-user-snack/no-user-snack.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'user-search',
@@ -20,8 +22,9 @@ export class SearchComponent implements OnInit {
 
   constructor(
     private githubSearchService: GithubSearchService,
-    private followerService: FollowerService,
-    private userService: UserService
+    private noUserSnack: MatSnackBar,
+    private userService: UserService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -38,7 +41,17 @@ export class SearchComponent implements OnInit {
       data => {
         user = data;
         this.userService.user = user;
-        this.userSearchResultEmitter.emit(user);
+        this.router.navigate(['results', user.login]);
+      },
+      err=>{
+        console.log(err);
+        this.noUserSnack.openFromComponent(NoUserSnackComponent,{
+          duration: 2500,
+          data: {
+            message: err.statusText,
+            search: this.userSearch
+          }
+        });
       }
     );
   }

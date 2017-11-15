@@ -24,12 +24,4 @@ $result-opacity: 0.6;
 
 .avatar-image-container{
   position: relative;
-  &:after{
-    content: "";
-    display: block;
-    position: absolute;
-    border-bottom: 3px solid red;
-    width: 100%;
-
-  }
 }

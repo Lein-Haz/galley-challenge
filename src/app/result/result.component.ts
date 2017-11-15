@@ -39,7 +39,6 @@ export class ResultComponent implements OnInit, OnDestroy {
       this.user = this.userService.user;
       this.loadFollowers(this.user.followers_url);
     }else{
-      console.log("I would load, but I'm not right now");
       this.loadUser();
     }
 
@@ -55,6 +54,7 @@ export class ResultComponent implements OnInit, OnDestroy {
         this.loadMoreEnabled = canLoadMoreBoolean;
       }
     );
+
   }
 
   /* if we are just using the url instead of the search flow */
@@ -63,10 +63,8 @@ export class ResultComponent implements OnInit, OnDestroy {
       .switchMap((params:ParamMap)=>params.getAll('id')
       );
 
-    console.log(this.paramUserName);
+
     this.paramUserName.subscribe(data=>{
-      console.log("paramUserName here is");
-      console.log(data);
       this.userObs = this.userService.getOrLoadUser(data);
     });
 
@@ -74,6 +72,10 @@ export class ResultComponent implements OnInit, OnDestroy {
       data=>{
         this.user = data;
         this.loadFollowers(this.user.followers_url);
+      },
+      err=>{
+        //redirect back to search if trying to search for a non-existent user
+        this.router.navigate(['/']);
       }
     );
   }
@@ -81,12 +83,7 @@ export class ResultComponent implements OnInit, OnDestroy {
   private loadFollowers(followersUrl: string){
     if(this.user.followers > 0){
       this.followerService.loadInitialFollowers(followersUrl);
-      //console.log("not loading followers RN");
     }
-  }
-
-  public clickyLoad(){
-    this.followerService.getridOfThisLoader('https://api.github.com/users/anotherjesse/followers?per_page=100');
   }
 
   public loadMore(){
