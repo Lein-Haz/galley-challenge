@@ -31,10 +31,6 @@ export class FollowerService{
     this.followerLoadHandler(followersUrl, ConstantService.FOLLOWER_HTTP_PARAMS.INITIAL);
   }
 
-  public getridOfThisLoader(followersUrl: string){
-    this.followerLoadHandler(followersUrl, ConstantService.FOLLOWER_HTTP_PARAMS.PAGINATED);
-  }
-
   private followerLoadHandler(followersUrl:string, options?: {}){
     let httpResponseSubject: Subject<HttpResponse<FollowerModel[]>> = new Subject();
     let httpResponseObs = this.gitHubSearchService.getFollowers(followersUrl, options);

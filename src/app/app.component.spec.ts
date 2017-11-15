@@ -1,8 +1,9 @@
 import {TestBed, async, ComponentFixture} from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import {AppMaterialModule} from "./app-material/app-material.module";
-import {By} from "@angular/platform-browser";
-import {MatToolbar} from "@angular/material";
+import {By, DomSanitizer} from "@angular/platform-browser";
+import {RouterTestingModule} from "@angular/router/testing";
+import {RouterOutlet} from "@angular/router";
+import {MatIconRegistry} from "@angular/material";
 describe('AppComponent', () => {
   let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
@@ -10,11 +11,14 @@ describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports:[
-        AppMaterialModule
+        RouterTestingModule
       ],
       declarations: [
         AppComponent
       ],
+      providers:[
+        MatIconRegistry
+      ]
     }).compileComponents();
   }));
   beforeEach(() => {
@@ -28,20 +32,10 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   }));
 
-  it('should have a toolbar component', () => {
-    fixture.detectChanges();//It does something weird without this line
-    let sideNav = fixture.debugElement.query(By.directive(MatToolbar));
-    expect(sideNav).not.toBe(null);
-  });
-  it(`should have as title 'OTP'`, async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('OTP');
-  }));
-  it('should render title in a h1 tag', async(() => {
+  it('should have a router-outlet component', async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to OTP!');
+    let theRouter = fixture.debugElement.query(By.directive(RouterOutlet));
+    expect(theRouter).not.toBe(null);
   }));
 });

@@ -16,10 +16,6 @@ export class SearchComponent implements OnInit {
 
   public userSearch: string;
 
-  @Output()
-  userSearchResultEmitter: EventEmitter<UserModel> = new EventEmitter();
-
-
   constructor(
     private githubSearchService: GithubSearchService,
     private noUserSnack: MatSnackBar,
@@ -28,10 +24,6 @@ export class SearchComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-  }
-
-  searchForUser(){
-    this.searchUser(this.userSearch);
   }
 
   searchUser(username: string){
