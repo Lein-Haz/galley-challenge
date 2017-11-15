@@ -11,9 +11,6 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {Observable} from "rxjs/Rx";
 import {Router} from "@angular/router";
 
-let bob = new UserModel();
-bob.login = 'BigBob';
-
 describe('SearchComponent', () => {
   let component: SearchComponent;
   let fixture: ComponentFixture<SearchComponent>;
@@ -29,8 +26,7 @@ describe('SearchComponent', () => {
       getUser(username:string){
         let user: UserModel = new UserModel();
         user.login = username;
-        let retty = Observable.from([user]);
-        return retty;
+        return Observable.from([user]);
       }
     };
     let userServiceStub = {
