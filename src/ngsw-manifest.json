@@ -4,6 +4,12 @@
     "routes": {
       "/": {
         "match": "exact"
+      },
+      "/search": {
+        "match": "exact"
+      },
+      "\/results\/.*": {
+        "match": "regex"
       }
     }
   },
@@ -25,6 +31,15 @@
       }, {
         "name": "githubAvatars",
         "urls": {
+          "https://avatars0.githubusercontent.com": {
+            "match": "prefix"
+          },
+          "https://avatars1.githubusercontent.com": {
+            "match": "prefix"
+          },
+          "https://avatars2.githubusercontent.com": {
+            "match": "prefix"
+          },
           "https://avatars3.githubusercontent.com": {
             "match": "prefix"
           }
