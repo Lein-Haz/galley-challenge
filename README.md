@@ -1,4 +1,5 @@
-#Github User Search (OTP app)
+
+# Github User Search (OTP app)
 
 Deployed here: [https://shipt.zahniel.com](https://shipt.zahniel.com)
 
