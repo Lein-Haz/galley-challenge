@@ -30,10 +30,6 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
   }
 
-  searchForUser(){
-    this.searchUser(this.userSearch);
-  }
-
   searchUser(username: string){
     let user: UserModel;
     let userResponse = this.githubSearchService.getUser(username);
