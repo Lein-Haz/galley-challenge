@@ -3,6 +3,8 @@
 
 Deployed here: [https://shipt.zahniel.com](https://shipt.zahniel.com)
 
+[My Resume](https://www.dropbox.com/s/u8820grkvws7ess/PhilipZahnielResume.pdf?dl=0)
+
 Build [instructions](BuildREADME.md)
 
 ## Problem
